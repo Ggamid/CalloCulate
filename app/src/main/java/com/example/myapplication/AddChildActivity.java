@@ -11,7 +11,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class AddChildActivity extends AppCompatActivity {
-    EditText firstName,lastName,fatherName;
+    EditText firstName,lastName,fatherName, birthDay;
     DatabaseReference firebaseDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +23,13 @@ public class AddChildActivity extends AppCompatActivity {
         firstName = findViewById(R.id.editTextTextPersonName3);
         lastName = findViewById(R.id.editTextTextPersonName4);
         fatherName = findViewById(R.id.editTextTextPersonName5);
+        birthDay = findViewById(R.id.RegActivityBirthDay);
         firebaseDatabase  = FirebaseDatabase.getInstance().getReference("Child");
 
     }
     public void setBD(View view){
 
-        Child child = new Child(firstName.getText().toString(),lastName.getText().toString(),fatherName.getText().toString());
+        Child child = new Child(firstName.getText().toString(),lastName.getText().toString(),fatherName.getText().toString(), birthDay.getText().toString());
         firebaseDatabase.push().setValue(child);
         startActivity(new Intent(AddChildActivity.this, MainActivity.class));
     }
